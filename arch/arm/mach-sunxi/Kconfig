@@ -36,12 +36,23 @@ config MACH_SUN7I
 	select ARCH_SUPPORTS_BIG_ENDIAN
 	select HAVE_ARM_ARCH_TIMER
 	select SUN5I_HSTIMER
+	
+config SUN8I_A83T_MCPM
+	bool "Sun8i A83T Multi-Cluster PM support"
+	depends on MCPM && MACH_SUN8I
+	select ARM_CCI400_PORT_CTRL
+	help
+	  This is needed to provide CPU and cluster power management
+	  on Allwinner Sun8i A83T.
 
 config MACH_SUN8I
 	bool "Allwinner sun8i Family SoCs support"
 	default ARCH_SUNXI
 	select ARM_GIC
 	select MFD_SUN6I_PRCM
+	imply MCPM
+
+	
 
 config MACH_SUN9I
 	bool "Allwinner (sun9i) SoCs support"
@@ -54,5 +65,7 @@ config ARCH_SUNXI_MC_SMP
 	default MACH_SUN9I || MACH_SUN8I
 	select ARM_CCI400_PORT_CTRL
 	select ARM_CPU_SUSPEND
+	
+
 
 endif
