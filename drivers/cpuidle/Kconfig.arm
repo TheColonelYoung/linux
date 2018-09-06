@@ -75,3 +75,12 @@ config ARM_MVEBU_V7_CPUIDLE
 	depends on ARCH_MVEBU && !ARM64
 	help
 	  Select this to enable cpuidle on Armada 370, 38x and XP processors.
+	  
+config ARM_A83T_CPUIDLE
+	bool "CPU Idle Driver for the Alwinner A83t"
+	select CPU_IDLE_MULTIPLE_DRIVERS
+	depends on !ARM64
+	select ARM_CPU_SUSPEND
+	help
+	  Select this to enable cpuidle for Allwinner A83t processor. Standard
+	  ARM_CPUIDLE cannot be used due to non supported PSCI.
